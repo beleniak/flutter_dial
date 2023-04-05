@@ -1,8 +1,8 @@
 
 name: flutter_dial
 description: A new Flutter package project.
-version: 0.0.1
-homepage: www.beleniak.ca
+version: 0.9.0
+homepage: https://github.com/beleniak/flutter_dial.git
 publish_to: none
 
 environment:

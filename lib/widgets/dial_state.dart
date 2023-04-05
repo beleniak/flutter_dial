@@ -241,6 +241,7 @@ class _DialState extends State<Dial> {
               final double percent = _doTurn(startDial);
               final int stop = _findNearestStop(percent);
               widget.onDialed?.call(_directedRadians(indicatorAngle).toDegrees(), percent, stop);
+              setState(() {});
             },
             onPanUpdate: (details) {
               if (!enabled) return;
@@ -249,6 +250,7 @@ class _DialState extends State<Dial> {
                 final double percent = _doTurn(currentDial);
                 final int stop = _findNearestStop(percent);
                 widget.onDialed?.call(_directedRadians(indicatorAngle).toDegrees(), percent, stop);
+                setState(() {});
                 return;
               }
             },
