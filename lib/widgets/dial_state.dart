@@ -52,7 +52,7 @@ class _DialState extends State<Dial> {
   void initState() {
     super.initState();
     radius = widget.size / 2.0;
-    innerRadius = radius - math.min(widget.width, radius);
+    innerRadius = radius - math.min(widget.ringWidth, radius);
     center = Offset(radius, radius);
     widgetSize = Size(widget.size, widget.size);
     trackingPercent = widget.value;
@@ -223,7 +223,7 @@ class _DialState extends State<Dial> {
           widget.onFocusChange?.call(focused);
           final currentPercent = _findNearestStopPercent(trackingPercent);
           final int currentStop = _findNearestStop(currentPercent);
-          widget.onDialed?.call(_directedRadians(indicatorAngle).toDegrees(), currentPercent, currentStop);
+          widget.onDial?.call(_directedRadians(indicatorAngle).toDegrees(), currentPercent, currentStop);
         },
         child: Builder(builder: (BuildContext context) {
           return GestureDetector(
@@ -240,7 +240,7 @@ class _DialState extends State<Dial> {
               curPercent = prevPercent = _kUninitializedDegrees;
               final double percent = _doTurn(startDial);
               final int stop = _findNearestStop(percent);
-              widget.onDialed?.call(_directedRadians(indicatorAngle).toDegrees(), percent, stop);
+              widget.onDial?.call(_directedRadians(indicatorAngle).toDegrees(), percent, stop);
               setState(() {});
             },
             onPanUpdate: (details) {
@@ -249,7 +249,7 @@ class _DialState extends State<Dial> {
               if (_survivesClip(currentDial)) {
                 final double percent = _doTurn(currentDial);
                 final int stop = _findNearestStop(percent);
-                widget.onDialed?.call(_directedRadians(indicatorAngle).toDegrees(), percent, stop);
+                widget.onDial?.call(_directedRadians(indicatorAngle).toDegrees(), percent, stop);
                 setState(() {});
                 return;
               }
@@ -263,10 +263,10 @@ class _DialState extends State<Dial> {
                   height: widget.size,
                   width: widget.size,
                   foregroundDecoration: DialDecoration(
-                    width: widget.width,
+                    width: widget.ringWidth,
                     color: singleColor,
                     gradient: gradient,
-                    shape: DialBorder(center: Offset(radius, radius), radius: radius, width: widget.width),
+                    shape: DialBorder(center: Offset(radius, radius), radius: radius, width: widget.ringWidth),
                   ),
                   child: SizedBox(
                     height: widget.size,

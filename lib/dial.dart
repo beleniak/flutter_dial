@@ -12,7 +12,7 @@ part 'widgets/dial_state.dart';
 
 /// Creates a widget that acts as a dial.
 ///
-/// When focused, the dial will display a control ring of [width] logical pixels
+/// When focused, the dial will display a control ring of [ringWidth] logical pixels
 /// If [clip] is true, panning off of this ring will end the current pan,
 /// otherwise panning outside of the widget will continue to update the dial.
 ///
@@ -36,7 +36,7 @@ class Dial extends StatefulWidget {
     super.key,
     this.value = 0.0,
     required this.size,
-    required this.width,
+    required this.ringWidth,
     required this.color,
     this.hotColor,
     this.opacity = 1.0,
@@ -48,11 +48,11 @@ class Dial extends StatefulWidget {
     this.indicatorColor,
     this.indicatorWidth = 1.0,
     this.indicatorLength,
-    this.onDialed,
+    this.onDial,
     this.onFocusChange,
   }) {
     assert(size > 0);
-    assert(width >= 0 && width < size / 2);
+    assert(ringWidth >= 0 && ringWidth < size / 2);
     assert(opacity > 0.0 && opacity <= 1);
     assert(value >= 0.0 && value <= 360.0);
     assert(orientation >= -360.0 && orientation <= 360.0);
@@ -68,7 +68,7 @@ class Dial extends StatefulWidget {
   /// The width of the control ring in logical pixels.
   /// If larger than the calculated radius of the dial, this will
   /// be set to the radius of the dial.
-  final double width;
+  final double ringWidth;
 
   /// The color of the control ring if [hotColor] is null,
   /// otherwise the cool color (low values) side of the control rings gradient.
@@ -121,7 +121,7 @@ class Dial extends StatefulWidget {
   /// - [degrees - 0.0-360.0] - degrees of rotation of the indicator.
   /// - [percent - 0.0-100.0] percent rotation of the indicator.
   /// - [stopNumber 0-numberOfStops] - the stop number the indicator is at, 0 if numberOfStops < 1.
-  final void Function(double degrees, double percent, int stopNumber)? onDialed;
+  final void Function(double degrees, double percent, int stopNumber)? onDial;
 
   /// Handler called when the focus changes.
   ///
