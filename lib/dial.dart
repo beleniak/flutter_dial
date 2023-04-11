@@ -20,35 +20,35 @@ part 'widgets/dial_state.dart';
 /// Use [indicatorColor], [indicatorWidth], and [indicatorLength] to simulate rotation.
 ///
 /// If [hotColor] is null, the control ring will be [color] color, otherwise it
-/// will be a gradient of [[color, hotColor]], with [opacity] applied.
+/// will be a gradient of [color, hotColor], with [opacity] applied.
 ///
-/// The initial precentage on creation of the widget is supplied through [value] [[0,100]]
+/// The initial precentage on creation of the widget is supplied through [value] [0,100]
 ///
 /// The dial may be oriented clockwise or counterclockwise via [clockwise]. and the
 /// mounting orientation is supplied via [orientation] in degrees from bottom,
-/// typically [[-180, 180]].
+/// typically [-180, 180].
 ///
-/// If [numStops] is zero, it is infinitely dialable withing [0,360] degrees,
-/// if non-zero, the dial will dial to [numStops] evenly spaced stops.
+/// If [stopCount] is zero, it is infinitely dialable withing [0,360] degrees,
+/// if non-zero, the dial will dial to [stopCount] evenly spaced stops.
 class Dial extends StatefulWidget {
   /// Creates an Dial
   Dial({
     super.key,
     this.value = 0.0,
+    required this.image,
     required this.size,
     required this.ringWidth,
     required this.color,
     this.hotColor,
     this.opacity = 1.0,
-    this.numStops = 0,
+    this.stopCount = 0,
     this.clip = false,
     this.clockwise = true,
     this.orientation = 0.0,
-    required this.image,
     this.indicatorColor,
     this.indicatorWidth = 1.0,
     this.indicatorLength,
-    this.onDial,
+    this.onDialed,
     this.onFocusChange,
   }) {
     assert(size > 0);
@@ -61,6 +61,9 @@ class Dial extends StatefulWidget {
 
   /// The percentage value of the control ring on creation.
   final double value;
+
+  /// The image used for the dial.
+  final Image image;
 
   /// The size of the widget, Size([size,size]) in logical pixels.
   final double size;
@@ -80,12 +83,15 @@ class Dial extends StatefulWidget {
   /// The opacity of the control ring
   final double opacity;
 
-  /// If <= zero, the dial is infinite on [0,360], otherwise the number of
-  /// evenly placed stops around the dial.
-  final int numStops;
+  /// The number of non-zero evenly placed stops around the dial.
+  /// If <= zero, there are no stops and the dial is infinite on [0.0,360.0]
+  /// eg) stopCount: 10
+  /// will result in a stop at "zero" and 10 subsequent evenly distributed
+  /// radial stops at degrees (36, 72, 108, ... 360)
+  final int stopCount;
 
   /// Set to true to end panning when outside of the control ring.
-  /// Default - false.
+  /// Default - false
   final bool clip;
 
   /// Panning direction to increase the dials value.
@@ -98,17 +104,15 @@ class Dial extends StatefulWidget {
   /// Default 0.0
   final double orientation;
 
-  /// The image used for the dial.
-  final Image image;
-
   /// The color of the dial position indicator line.
+  /// The position indicator will be transparent if not specified
   final Color? indicatorColor;
 
-  /// This width of the dial indicator line.
+  /// This width of the dial indicator line in logical pixels.
   /// Default 1.0
   final double indicatorWidth;
 
-  /// The length of the dial indicator line.
+  /// The length of the dial indicator line in loogical pixels.
   /// If over dial radius, it will be set equal dial radius.
   final double? indicatorLength;
 
@@ -119,11 +123,11 @@ class Dial extends StatefulWidget {
   ///
   /// Called with:
   /// - [degrees - 0.0-360.0] - degrees of rotation of the indicator.
-  /// - [percent - 0.0-100.0] percent rotation of the indicator.
-  /// - [stopNumber 0-numberOfStops] - the stop number the indicator is at, 0 if numberOfStops < 1.
-  final void Function(double degrees, double percent, int stopNumber)? onDial;
+  /// - [percent - 0.0-100.0] - percent rotation of the indicator.
+  /// - [stopNumber 0-numberOfStops] - the stop number the indicator is at, 0 if stopCount < 1.
+  final void Function(double degrees, double percent, int stopNumber)? onDialed;
 
-  /// Handler called when the focus changes.
+  /// Called when the focus changes.
   ///
   /// Called with:
   /// - [focused = true] if focus is gained by tap.

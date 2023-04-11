@@ -12,23 +12,95 @@ and the Flutter guide for
 -->
 
 A Flutter package implementing a dial for skeumorphic input.
- 
+
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+A Dial begins as a transparent background image (png, gif, tiff).
+
+When selected a translucent control ring becomes visible and
+can manipulated rotationally.  The color(s), width, and opacity of the
+control ring are programmable.
+
+The control ring may have a single color, or be colored with a cold/hot
+color gradient.
+
+A Dial can be can have infinite range on [0.0, 360] degrees, or it can
+be programmed to have a fixed number of evenly placed radial stops.
+
+A callback closure function [onDialed()] exposes the current rotational value
+of the Dial in the form of current (degrees, percent, stop number) of rotation.
+
+Persistence is available via [Dial.value] as initial state, and the [percent]
+value from the [Dial.onDialed()] callback for current state.
+
+Dials operate as focusable widgets, when other focusable widgets (including Dials)
+are selected, the previous dial will deselect to avoid input errors.
+
+When a Dial receives or loses focus, [Dial.onFocusChange()] will be called.  This
+allows programming of effects external to the Dial (eg, highlighting, bolding) on
+associated Widgets.
+
+TODO: Include images, gifs, or videos.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+1. Add a dependency in pubspec.yaml:  
+[flutter_dial: ^0.1.0]
+
+2. Import into your appropriate implementation dart files:  
+[import 'package:flutter_dial/flutter_dial.dart']
+
+3. Use [Dial(size, ringWidth, color, image, ...)] widget(s) as required.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+The Flutter "Counter" example Stateful Widget rewritten to use a Dial.
+Assumption: a suitable image is in the [/assets/images] folder.
 
 ```dart
-const like = 'sample';
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _position = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text('Dial setting:'),
+            Text('$_position', style: Theme.of(context).textTheme.headlineMedium),
+            const SizedBox(height: 40),
+            Dial(
+              value: 0.0,
+              image: Image.asset('assets/images/my_dial.png'),
+              size: 200,
+              ringWidth: 50,
+              numStops: 10,
+              color: Colors.teal,
+              indicatorColor: Colors.black,
+              opacity: 0.5,
+              onDial: (degrees, percent, stopNumber) => setState(() => _position = stopNumber),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 ```
 
 ## Additional information

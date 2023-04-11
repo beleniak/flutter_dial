@@ -75,14 +75,14 @@ class _DialState extends State<Dial> {
       nullGradient = null;
     }
 
-    percentPerStop = widget.numStops > 0 ? 100.0 / widget.numStops : 0.0;
+    percentPerStop = widget.stopCount > 0 ? 100.0 / widget.stopCount : 0.0;
     stopPercent = _findNearestStopPercent(trackingPercent);
   }
 
   // returns the closest stop number, zero if no stops
   int _findNearestStop(double percent) {
     double nearest = 0.0;
-    if (widget.numStops > 0) {
+    if (widget.stopCount > 0) {
       double val = percent / percentPerStop;
       nearest = val.round() * percentPerStop;
       return (nearest ~/ percentPerStop);
@@ -93,7 +93,7 @@ class _DialState extends State<Dial> {
   // find the closest stop percent, input = output of no stops
   double _findNearestStopPercent(double percent) {
     double nearest = percent;
-    if (widget.numStops > 0) {
+    if (widget.stopCount > 0) {
       double val = percent / percentPerStop;
       nearest = val.round() * percentPerStop;
     }
@@ -170,7 +170,7 @@ class _DialState extends State<Dial> {
     // jump discontinuity, rollover
     if ((degrees - prevPercent).abs() > 45.0) {
       prevPercent = curPercent = degrees;
-      stopPercent = (widget.numStops > 0) ? _findNearestStopPercent(trackingPercent) : trackingPercent;
+      stopPercent = (widget.stopCount > 0) ? _findNearestStopPercent(trackingPercent) : trackingPercent;
       return stopPercent;
     }
     // determine direction
@@ -205,7 +205,7 @@ class _DialState extends State<Dial> {
     }
 
     prevPercent = curPercent;
-    stopPercent = (widget.numStops > 0) ? _findNearestStopPercent(trackingPercent) : trackingPercent;
+    stopPercent = (widget.stopCount > 0) ? _findNearestStopPercent(trackingPercent) : trackingPercent;
     return stopPercent;
   }
 
@@ -223,7 +223,7 @@ class _DialState extends State<Dial> {
           widget.onFocusChange?.call(focused);
           final currentPercent = _findNearestStopPercent(trackingPercent);
           final int currentStop = _findNearestStop(currentPercent);
-          widget.onDial?.call(_directedRadians(indicatorAngle).toDegrees(), currentPercent, currentStop);
+          widget.onDialed?.call(_directedRadians(indicatorAngle).toDegrees(), currentPercent, currentStop);
         },
         child: Builder(builder: (BuildContext context) {
           return GestureDetector(
@@ -240,7 +240,7 @@ class _DialState extends State<Dial> {
               curPercent = prevPercent = _kUninitializedDegrees;
               final double percent = _doTurn(startDial);
               final int stop = _findNearestStop(percent);
-              widget.onDial?.call(_directedRadians(indicatorAngle).toDegrees(), percent, stop);
+              widget.onDialed?.call(_directedRadians(indicatorAngle).toDegrees(), percent, stop);
               setState(() {});
             },
             onPanUpdate: (details) {
@@ -249,7 +249,7 @@ class _DialState extends State<Dial> {
               if (_survivesClip(currentDial)) {
                 final double percent = _doTurn(currentDial);
                 final int stop = _findNearestStop(percent);
-                widget.onDial?.call(_directedRadians(indicatorAngle).toDegrees(), percent, stop);
+                widget.onDialed?.call(_directedRadians(indicatorAngle).toDegrees(), percent, stop);
                 setState(() {});
                 return;
               }
