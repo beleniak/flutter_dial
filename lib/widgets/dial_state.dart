@@ -62,7 +62,7 @@ class _DialState extends State<Dial> {
     mainColor = widget.color.withOpacity(widget.opacity);
     indicatorColor = widget.indicatorColor ?? Colors.transparent;
     if (widget.indicatorLength != null) {
-      indicatorStartRadius = math.max(radius, radius - widget.indicatorLength!);
+      indicatorStartRadius = math.max(radius - widget.indicatorLength!, 0);
     } else {
       indicatorStartRadius = radius / 3; // default length = 2/3 of radius
     }
@@ -77,6 +77,16 @@ class _DialState extends State<Dial> {
 
     percentPerStop = widget.stopCount > 0 ? 100.0 / widget.stopCount : 0.0;
     stopPercent = _findNearestStopPercent(trackingPercent);
+
+    // Keep results as expected.
+    // case: rebuild forced by changing the Widget's key
+    Future.delayed(Duration.zero, () {
+      widget.onDialed?.call(
+        3.6 * trackingPercent,
+        trackingPercent,
+        _findNearestStop(stopPercent),
+      );
+    });    
   }
 
   // returns the closest stop number, zero if no stops
