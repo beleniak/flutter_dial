@@ -13,28 +13,37 @@ and the Flutter guide for
 
 A Flutter package implementing a dial for skeumorphic input.
 
+|             | Android | iOS  | Linux | macOS  | Web | Windows     |
+|-------------|---------|------|-------|--------|-----|-------------|
+| **Support** | SDK 16+ | 9.0+ | Any   | 10.11+ | Any | Any         |
+
+
 ## Features
 
-A Dial begins as a transparent background image (png, gif, tiff).
+A Dial begins as an image with a transparent background (png, gif, tiff).
 
-When selected a translucent control ring becomes visible and
-can manipulated rotationally.  The color(s), width, and opacity of the
+In order to maintain any image skeumorphism, the image is not rotated.
+A visual rotation indicator provides visual feedback on dial position.
+
+When a Dial is selected via tap, a translucent control ring becomes visible
+and can manipulated via rotation.  The color(s), width, and opacity of the
 control ring are programmable.
 
 The control ring may have a single color, or be colored with a cold/hot
 color gradient.
 
+A Dial is deselected with a second tap.  In addition, Dials are focusable
+widgets.  When other focusable widgets (including Dials) are selected,
+the previous Dial will deselect to avoid input errors.
+
 A Dial can be can have infinite range on [0.0, 360] degrees, or it can
 be programmed to have a fixed number of evenly placed radial stops.
 
 A callback closure function [onDialed()] exposes the current rotational value
-of the Dial in the form of current (degrees, percent, stop number) of rotation.
+of the Dial in the form of current [degrees, percent, stop number] of rotation.
 
 Persistence is available via [Dial.value] as initial state, and the [percent]
 value from the [Dial.onDialed()] callback for current state.
-
-Dials operate as focusable widgets, when other focusable widgets (including Dials)
-are selected, the previous dial will deselect to avoid input errors.
 
 When a Dial receives or loses focus, [Dial.onFocusChange()] will be called.  This
 allows programming of effects external to the Dial (eg, highlighting, bolding) on
