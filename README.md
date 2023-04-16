@@ -11,12 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-A Flutter package implementing a dial for skeumorphic input.
-
-|             | Android | iOS  | Linux | macOS  | Web | Windows     |
-|-------------|---------|------|-------|--------|-----|-------------|
-| **Support** | SDK 16+ | 9.0+ | Any   | 10.11+ | Any | Any         |
-
+A Flutter package implementing a dial for input and visual display.
 
 ## Features
 
@@ -97,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
               image: Image.asset('assets/images/my_dial.png'),
               size: 200,
               ringWidth: 50,
-              numStops: 10,
+              stopCount: 10,
               color: Colors.teal,
               indicatorColor: Colors.black,
               opacity: 0.5,
@@ -111,9 +106,10 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 ```
-
+<!--
 ## Additional information
 
 TODO: Tell users more about the package: where to find more information, how to
 contribute to the package, how to file issues, what response they can expect
 from the package authors, and more.
+-->
