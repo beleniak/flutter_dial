@@ -70,7 +70,8 @@ class _DialState extends State<Dial> {
     // Create gradiants (visible and invisible)
     sweepGradient = _createGradient();
     if (widget.hotColor != null) {
-      nullGradient = const SweepGradient(colors: [Colors.transparent, Colors.transparent]);
+      nullGradient =
+          const SweepGradient(colors: [Colors.transparent, Colors.transparent]);
     } else {
       nullGradient = null;
     }
@@ -86,7 +87,7 @@ class _DialState extends State<Dial> {
         trackingPercent,
         _findNearestStop(stopPercent),
       );
-    });    
+    });
   }
 
   // returns the closest stop number, zero if no stops
@@ -116,7 +117,8 @@ class _DialState extends State<Dial> {
     if (widget.hotColor != null) {
       Color color1 = widget.color.withOpacity(widget.opacity);
       Color color2 = widget.hotColor!.withOpacity(widget.opacity);
-      List<Color> gradientColors = widget.clockwise ? [color1, color2] : [color2, color1];
+      List<Color> gradientColors =
+          widget.clockwise ? [color1, color2] : [color2, color1];
       gradient = SweepGradient(
         colors: gradientColors,
         transform: GradientRotation(-orientationOffsetRadians),
@@ -156,9 +158,12 @@ class _DialState extends State<Dial> {
   // indicator angle given widget rotation and cw/ccw
   double _indicatorRadians(double percent) {
     int piMultiplier = widget.clockwise ? -3 : 1;
-    double adjustedOrientation = widget.clockwise ? 180.0 - orientation : orientation;
+    double adjustedOrientation =
+        widget.clockwise ? 180.0 - orientation : orientation;
     double orientedRadians = adjustedOrientation.toRadians();
-    double indicatorAngle = orientedRadians + (piMultiplier * _kPiOverTwo) + (percent * _kTwoPi) / 100.0;
+    double indicatorAngle = orientedRadians +
+        (piMultiplier * _kPiOverTwo) +
+        (percent * _kTwoPi) / 100.0;
     return indicatorAngle;
   }
 
@@ -180,7 +185,9 @@ class _DialState extends State<Dial> {
     // jump discontinuity, rollover
     if ((degrees - prevPercent).abs() > 45.0) {
       prevPercent = curPercent = degrees;
-      stopPercent = (widget.stopCount > 0) ? _findNearestStopPercent(trackingPercent) : trackingPercent;
+      stopPercent = (widget.stopCount > 0)
+          ? _findNearestStopPercent(trackingPercent)
+          : trackingPercent;
       return stopPercent;
     }
     // determine direction
@@ -215,7 +222,9 @@ class _DialState extends State<Dial> {
     }
 
     prevPercent = curPercent;
-    stopPercent = (widget.stopCount > 0) ? _findNearestStopPercent(trackingPercent) : trackingPercent;
+    stopPercent = (widget.stopCount > 0)
+        ? _findNearestStopPercent(trackingPercent)
+        : trackingPercent;
     return stopPercent;
   }
 
@@ -224,7 +233,8 @@ class _DialState extends State<Dial> {
     double indicatorAngle = _indicatorRadians(stopPercent);
 
     Color? singleColor = enabled && widget.hotColor == null ? mainColor : null;
-    SweepGradient? gradient = enabled && widget.hotColor != null ? sweepGradient : nullGradient;
+    SweepGradient? gradient =
+        enabled && widget.hotColor != null ? sweepGradient : nullGradient;
 
     return FocusScope(
       child: Focus(
@@ -233,7 +243,8 @@ class _DialState extends State<Dial> {
           widget.onFocusChange?.call(focused);
           final currentPercent = _findNearestStopPercent(trackingPercent);
           final int currentStop = _findNearestStop(currentPercent);
-          widget.onDialed?.call(_directedRadians(indicatorAngle).toDegrees(), currentPercent, currentStop);
+          widget.onDialed?.call(_directedRadians(indicatorAngle).toDegrees(),
+              currentPercent, currentStop);
         },
         child: Builder(builder: (BuildContext context) {
           return GestureDetector(
@@ -250,7 +261,8 @@ class _DialState extends State<Dial> {
               curPercent = prevPercent = _kUninitializedDegrees;
               final double percent = _doTurn(startDial);
               final int stop = _findNearestStop(percent);
-              widget.onDialed?.call(_directedRadians(indicatorAngle).toDegrees(), percent, stop);
+              widget.onDialed?.call(
+                  _directedRadians(indicatorAngle).toDegrees(), percent, stop);
               setState(() {});
             },
             onPanUpdate: (details) {
@@ -259,7 +271,10 @@ class _DialState extends State<Dial> {
               if (_survivesClip(currentDial)) {
                 final double percent = _doTurn(currentDial);
                 final int stop = _findNearestStop(percent);
-                widget.onDialed?.call(_directedRadians(indicatorAngle).toDegrees(), percent, stop);
+                widget.onDialed?.call(
+                    _directedRadians(indicatorAngle).toDegrees(),
+                    percent,
+                    stop);
                 setState(() {});
                 return;
               }
@@ -276,7 +291,10 @@ class _DialState extends State<Dial> {
                     width: widget.ringWidth,
                     color: singleColor,
                     gradient: gradient,
-                    shape: DialBorder(center: Offset(radius, radius), radius: radius, width: widget.ringWidth),
+                    shape: DialBorder(
+                        center: Offset(radius, radius),
+                        radius: radius,
+                        width: widget.ringWidth),
                   ),
                   child: SizedBox(
                     height: widget.size,
@@ -288,7 +306,8 @@ class _DialState extends State<Dial> {
                   center: center,
                   startRadius: indicatorStartRadius,
                   endRadius: radius,
-                  rotationRadians: widget.clockwise ? indicatorAngle : -indicatorAngle,
+                  rotationRadians:
+                      widget.clockwise ? indicatorAngle : -indicatorAngle,
                   width: widget.indicatorWidth,
                   color: indicatorColor,
                 ),
