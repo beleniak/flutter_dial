@@ -45,15 +45,17 @@ allows programming of effects external to the Dial (eg, highlighting, bolding) o
 associated Widgets.
 
 
+
 ### A dial controlling a meter:
-![Metered Dial](../assets/Metered_Dial.gif?raw=true)
+![Metered Dial](https://raw.githubusercontent.com/beleniak/flutter_dial/assets/Metered_Dial.gif)
 
 This demonstrates tap to focus, dialing, and responsive output on the meter.
 When the dial has focus, the meter will "light up" and indicate the dials position.
 
 
+
 ### Several dials with outputs monitored on simulated LED displays:
-![Industrial_Dials](../assets/Industrial_Dials.gif?raw=true)
+![Industrial_Dials](https://raw.githubusercontent.com/beleniak/flutter_dial/assets/Industrial_Dials.gif)
 
 This demonstrates:
 1. Automatic focus change between the dials
@@ -76,7 +78,7 @@ This demonstrates:
 ## Usage
 
 The Flutter "Counter" example Stateful Widget rewritten to use a Dial.
-Assumption: a suitable image is in the [/assets/images] folder.
+Assumption: a suitable image is in the ```/assets/images``` folder.
 
 ```dart
 class MyHomePage extends StatefulWidget {
