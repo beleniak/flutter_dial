@@ -44,7 +44,24 @@ When a Dial receives or loses focus, ```Dial.onFocusChange()``` will be called. 
 allows programming of effects external to the Dial (eg, highlighting, bolding) on
 associated Widgets.
 
-TODO: Include images, gifs, or videos.
+
+### A dial controlling a meter:
+![Metered Dial](../assets/Metered_Dial.gif?raw=true)
+
+This demonstrates tap to focus, dialing, and responsive output on the meter.
+When the dial has focus, the meter will "light up" and indicate the dials position.
+
+
+### Several dials with outputs monitored on simulated LED displays:
+![Industrial_Dials](../assets/Industrial_Dials.gif?raw=true)
+
+This demonstrates:
+1. Automatic focus change between the dials
+2. LED panels indicating the active dial by brightness
+3. Different colored dial control rings
+4. Two dials with radial stops
+5. One dial infinitely adjustable between 0 and 100 percent
+6. A "washing machine" style cold/hot control ring indicating increasing percentage
 
 ## Getting started
 
