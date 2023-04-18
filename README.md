@@ -11,18 +11,18 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-A Flutter package implementing a dial for input and visual display.
+A Flutter package implementing a Dial for input and visual display.
 
 ## Features
 
 A Dial begins as an image with a transparent background (png, gif, tiff).
 
 In order to maintain any image skeuomorphism, the image is not rotated.
-A visual rotation indicator provides visual feedback on dial position.
+A visual rotation indicator provides feedback on dial position.
 
 When a Dial is selected via tap, a translucent control ring becomes visible
-and can manipulated via rotation.  The color(s), width, and opacity of the
-control ring are programmable.
+and can be manipulated via rotation.  The color(s), width, and opacity of the
+control ring are programmable.  A Dial cannot be manipulated if not selected.
 
 The control ring may have a single color, or be colored with a cold/hot
 color gradient.
@@ -31,7 +31,7 @@ A Dial is deselected with a second tap.  In addition, Dials are focusable
 widgets.  When other focusable widgets (including Dials) are selected,
 the previous Dial will deselect to avoid input errors.
 
-A Dial can be can have infinite range on [0.0, 360] degrees, or it can
+A Dial can have infinite range on [0.0, 360] degrees, or it can
 be programmed to have a fixed number of evenly placed radial stops.
 
 A callback closure function ```onDialed()``` exposes the current rotational value
@@ -49,8 +49,12 @@ associated Widgets.
 ### A dial controlling a meter:
 ![Metered Dial](https://raw.githubusercontent.com/beleniak/flutter_dial/assets/Metered_Dial.gif)
 
-This demonstrates tap to focus, dialing, and responsive output on the meter.
-When the dial has focus, the meter will "light up" and indicate the dials position.
+This demonstrates:
+1. tap to focus/defocus
+2. dialing
+3. responsive output on the meter
+
+When the Dial has focus, the meter will "light up" when indicating the dials position.
 
 
 
@@ -58,11 +62,11 @@ When the dial has focus, the meter will "light up" and indicate the dials positi
 ![Industrial_Dials](https://raw.githubusercontent.com/beleniak/flutter_dial/assets/Industrial_Dials.gif)
 
 This demonstrates:
-1. Automatic focus change between the dials
-2. LED panels indicating the active dial by brightness
-3. Different colored dial control rings
-4. Two dials with radial stops
-5. One dial infinitely adjustable between 0 and 100 percent
+1. Automatic focus change between the Dials
+2. LED panels indicating the active Dial by brightness
+3. Different colored Dial control rings
+4. Two Dials with radial stops
+5. One Dial infinitely adjustable between 0 and 100 percent
 6. A "washing machine" style cold/hot control ring indicating increasing percentage
 
 ## Getting started
@@ -130,3 +134,5 @@ class _MyHomePageState extends State<MyHomePage> {
 
 Source repository:
 https://github.com/beleniak/flutter_dial
+
+The example in the repository contains a free-to-use sample dial image.
