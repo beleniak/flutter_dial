@@ -17,7 +17,7 @@ A Flutter package implementing a dial for input and visual display.
 
 A Dial begins as an image with a transparent background (png, gif, tiff).
 
-In order to maintain any image skeumorphism, the image is not rotated.
+In order to maintain any image skeuomorphism, the image is not rotated.
 A visual rotation indicator provides visual feedback on dial position.
 
 When a Dial is selected via tap, a translucent control ring becomes visible
@@ -68,7 +68,7 @@ This demonstrates:
 ## Getting started
 
 1. Add a dependency in pubspec.yaml:  
-```flutter_dial: ^0.1.2```
+```flutter_dial: ^any```
 
 2. Import into your appropriate implementation dart files:  
 ```import 'package:flutter_dial/flutter_dial.dart'```

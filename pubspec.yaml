@@ -1,6 +1,6 @@
 name: flutter_dial
-description: A skeumorphic dial widget.  Outputs rotation degrees, percent rotation, and current dial stop.
-version: 0.1.2
+description: A skeuomorphic dial widget.  Outputs rotation degrees, percent rotation, and current dial stop.
+version: 0.1.3
 homepage: https://beleniak.ca
 repository: https://github.com/beleniak/flutter_dial.git
 
