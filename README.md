@@ -34,13 +34,13 @@ the previous Dial will deselect to avoid input errors.
 A Dial can be can have infinite range on [0.0, 360] degrees, or it can
 be programmed to have a fixed number of evenly placed radial stops.
 
-A callback closure function [onDialed()] exposes the current rotational value
-of the Dial in the form of current [degrees, percent, stop number] of rotation.
+A callback closure function ```onDialed()``` exposes the current rotational value
+of the Dial in the form of current ```(degrees, percent, stop number)``` of rotation.
 
-Persistence is available via [Dial.value] as initial state, and the [percent]
-value from the [Dial.onDialed()] callback for current state.
+Persistence is available via ```Dial.value``` as initial state, and the ```percent```
+value from the ```Dial.onDialed()``` callback for current state.
 
-When a Dial receives or loses focus, [Dial.onFocusChange()] will be called.  This
+When a Dial receives or loses focus, ```Dial.onFocusChange()``` will be called.  This
 allows programming of effects external to the Dial (eg, highlighting, bolding) on
 associated Widgets.
 
@@ -49,12 +49,12 @@ TODO: Include images, gifs, or videos.
 ## Getting started
 
 1. Add a dependency in pubspec.yaml:  
-[flutter_dial: ^0.1.0]
+```flutter_dial: ^0.1.2```
 
 2. Import into your appropriate implementation dart files:  
-[import 'package:flutter_dial/flutter_dial.dart']
+```import 'package:flutter_dial/flutter_dial.dart'```
 
-3. Use [Dial(size, ringWidth, color, image, ...)] widget(s) as required.
+3. Use ```Dial(size, ringWidth, color, image, ...)``` widget(s) as required.
 
 ## Usage
 
@@ -106,6 +106,8 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 ```
-<!--
+
 ## Additional information
--->
+
+Source repository:
+https://github.com/beleniak/flutter_dial
