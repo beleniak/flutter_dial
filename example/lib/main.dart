@@ -58,7 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('Dial setting:'),
-            Text('$_position', style: Theme.of(context).textTheme.headlineMedium),
+            Text('$_position',
+                style: Theme.of(context).textTheme.headlineMedium),
             const SizedBox(height: 40),
             Dial(
               key: ValueKey(_value),
@@ -72,7 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
               indicatorLength: 200 / 4,
               indicatorColor: Colors.black,
               opacity: 0.5,
-              onDialed: (degrees, percent, stopNumber) => _setPosition(stopNumber),
+              onDialed: (degrees, percent, stopNumber) =>
+                  _setPosition(stopNumber),
             ),
           ],
         ),

@@ -91,13 +91,18 @@ Future<Image> getTestImage() async {
   // copy from decodeImageFromList of package:flutter/painting.dart
   final codec = await instantiateImageCodec(bytes);
   final frameInfo = await codec.getNextFrame();
-  final pngBytes = await frameInfo.image.toByteData(format: ImageByteFormat.png);
+  final pngBytes =
+      await frameInfo.image.toByteData(format: ImageByteFormat.png);
   return Image.memory(Uint8List.view(pngBytes!.buffer));
 }
 
 // Test App, wrapper for Dial Widget and Dial state visualization Widgets
 class TestDial extends StatefulWidget {
-  const TestDial({super.key, this.dialKey, required this.initialValue, required this.image});
+  const TestDial(
+      {super.key,
+      this.dialKey,
+      required this.initialValue,
+      required this.image});
 
   final Key? dialKey;
   final double initialValue;

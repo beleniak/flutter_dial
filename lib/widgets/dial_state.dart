@@ -59,7 +59,7 @@ class _DialState extends State<Dial> {
     // adjust reference to dead center bottom
     orientation = widget.orientation - 90.0;
     orientationOffsetRadians = orientation.toRadians();
-    mainColor = widget.color.withValues(alpha:widget.opacity);
+    mainColor = widget.color.withValues(alpha: widget.opacity);
     indicatorColor = widget.indicatorColor ?? Colors.transparent;
     if (widget.indicatorLength != null) {
       indicatorStartRadius = math.max(radius - widget.indicatorLength!, 0);
@@ -325,7 +325,8 @@ class _DialState extends State<Dial> {
 class DialDecoration extends ShapeDecoration {
   final double width;
 
-  const DialDecoration({required this.width, super.color, super.gradient, required super.shape});
+  const DialDecoration(
+      {required this.width, super.color, super.gradient, required super.shape});
 
   @override
   Path getClipPath(Rect rect, TextDirection textDirection) {
