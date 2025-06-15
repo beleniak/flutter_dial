@@ -12,3 +12,6 @@ Updates to README.md
 
 ## 0.1.4
 Updated deprecated Color.withOpacity() to Color.withValues()
+
+## 0.1.5
+Comply with dart formmtter
