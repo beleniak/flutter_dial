@@ -9,3 +9,6 @@ Animated gifs in package README.md
 
 ## 0.1.3
 Updates to README.md
+
+## 0.1.4
+Updated deprecated Color.withOpacity() to Color.withValues()

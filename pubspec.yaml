@@ -5,8 +5,8 @@ homepage: https://beleniak.ca
 repository: https://github.com/beleniak/flutter_dial.git
 
 environment:
-  sdk: ">=2.19.6 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=3.2.0 <4.0.0"
+#  flutter: "3.29.2"
 
 dependencies:
   flutter:
@@ -15,4 +15,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^5.0.0

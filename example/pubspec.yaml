@@ -1,7 +1,7 @@
 
 name: flutter_dial_example
 description: Example code for the flutter_dial package
-version: 0.1.0
+version: 0.1.4
 repository: https://github.com/beleniak/flutter_dial.git
 publish_to: none
 

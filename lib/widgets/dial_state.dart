@@ -59,7 +59,7 @@ class _DialState extends State<Dial> {
     // adjust reference to dead center bottom
     orientation = widget.orientation - 90.0;
     orientationOffsetRadians = orientation.toRadians();
-    mainColor = widget.color.withOpacity(widget.opacity);
+    mainColor = widget.color.withValues(alpha:widget.opacity);
     indicatorColor = widget.indicatorColor ?? Colors.transparent;
     if (widget.indicatorLength != null) {
       indicatorStartRadius = math.max(radius - widget.indicatorLength!, 0);
@@ -115,8 +115,8 @@ class _DialState extends State<Dial> {
   SweepGradient? _createGradient() {
     SweepGradient? gradient;
     if (widget.hotColor != null) {
-      Color color1 = widget.color.withOpacity(widget.opacity);
-      Color color2 = widget.hotColor!.withOpacity(widget.opacity);
+      Color color1 = widget.color.withValues(alpha: widget.opacity);
+      Color color2 = widget.hotColor!.withValues(alpha: widget.opacity);
       List<Color> gradientColors =
           widget.clockwise ? [color1, color2] : [color2, color1];
       gradient = SweepGradient(
@@ -325,8 +325,7 @@ class _DialState extends State<Dial> {
 class DialDecoration extends ShapeDecoration {
   final double width;
 
-  const DialDecoration({required this.width, color, gradient, shape})
-      : super(color: color, gradient: gradient, shape: shape);
+  const DialDecoration({required this.width, super.color, super.gradient, required super.shape});
 
   @override
   Path getClipPath(Rect rect, TextDirection textDirection) {
