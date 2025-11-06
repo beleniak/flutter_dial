@@ -15,3 +15,6 @@ Updated deprecated Color.withOpacity() to Color.withValues()
 
 ## 0.1.5
 Comply with dart formmtter
+
+## 0.1.6
+Comply with flutter_lints 6.0.0

@@ -142,7 +142,7 @@ class _DialState extends State<Dial> {
   }
 
   // returns radians corrected clockwise / counterclockwise
-  double _directedRadians(radians) {
+  double _directedRadians(double radians) {
     return widget.clockwise ? radians : -radians;
   }
 
